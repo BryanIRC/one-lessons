@@ -1,0 +1,16 @@
+<link rel="shortcut icon" href="src/alura-ico.png" type="image/x-icon">
+<canvas width="600" height="400"></canvas>
+<script>
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d");
+function dibujarCuadradoVerde(x,y,color)
+{
+    pincel.fillStyle=color;
+    pincel.fillRect(x,y,50,50);
+    pincel.strokeStyle="black";
+    pincel.strokeRect(x,y,50,50);
+}
+dibujarCuadradoVerde(0,0,"green");
+dibujarCuadradoVerde(50,0,"yellow");
+dibujarCuadradoVerde(100,0,"red");
+</script>

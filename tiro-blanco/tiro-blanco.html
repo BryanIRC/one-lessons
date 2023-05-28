@@ -1,0 +1,46 @@
+<canvas width="600" height="400"></canvas>
+<script>
+    var x=0,y=0,radio=30;
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d");    
+    pincel.fillStyle = "lightgreen";
+    pincel.fillRect(0,0,600,400);
+
+    function LimpiarPantalla(){
+        pincel.clearRect(0,0,600,400);
+    }
+    function DibujarCircunferencia(x,y,radio,color){
+        pincel.fillStyle = color;
+        pincel.beginPath();
+        pincel.arc(x,y,radio,0,2*Math.PI);
+        pincel.fill();    
+    }
+    function GenerarBlanco(){
+        x=0;
+        y=0;
+        LimpiarPantalla();
+        while(x<30 || y<30){
+            x=Math.floor(Math.random()*570);
+            y=Math.floor(Math.random()*370);
+            console.log(x,y);
+        }
+        DibujarCircunferencia(x,y,radio,"red");
+        DibujarCircunferencia(x,y,radio-10,"white");
+        DibujarCircunferencia(x,y,radio-20,"red");
+    }
+    setInterval(GenerarBlanco,1500);
+
+    function Tiro(evento){
+        var tiroX=evento.pageX-pantalla.offsetLeft;
+        var tiroY=evento.pageY-pantalla.offsetTop;
+        if ((tiroX<x+radio)&&
+            (tiroX>x-radio)&&
+            (tiroY<y+radio)&&
+            (tiroY>y-radio)){
+            alert("Tiro Certero")
+        }
+        else
+            alert("Tiro Fallido")
+    }
+    pantalla.onclick=Tiro;
+</script>
